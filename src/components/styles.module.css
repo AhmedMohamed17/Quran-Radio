@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;700&display=swap');
 
-body {
-  font-family: 'Reem Kufi', sans-serif;
-}
-
 .radio-player-container {
   display: flex;
   flex-direction: column;
@@ -27,17 +23,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #513131;
-  color: #433636;
+  background: #007bff;
+  color: #fff;
   font-weight: bold;
   border-radius: 25px;
-  padding: 10px 20px;
+  padding: 12px 24px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   transition: 0.3s;
 }
 
 .play-button:hover {
-  background: #f4f4f4;
+  background: #0056b3;
+  color: #fff;
 }
 
 .volume-control {
