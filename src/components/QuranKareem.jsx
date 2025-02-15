@@ -10,7 +10,7 @@ import {
   FaFacebookMessenger,
   FaTwitter,
 } from "react-icons/fa";
-import "./styles.css";
+import styles from "./styles.module.css";
 
 export default function QuranRadioPlayer() {
   const audioRef = useRef(null);
@@ -24,6 +24,18 @@ export default function QuranRadioPlayer() {
       audio.volume = volume;
     }
   }, [volume]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.addEventListener("ended", () => setIsPlaying(false));
+    }
+    return () => {
+      if (audio) {
+        audio.removeEventListener("ended", () => setIsPlaying(false));
+      }
+    };
+  }, []);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -53,7 +65,11 @@ export default function QuranRadioPlayer() {
       <audio ref={audioRef} src={shareUrl} autoPlay />
       <Button
         onClick={togglePlay}
-        className="mt-4 flex items-center gap-2 px-6 py-3 rounded-full bg-white text-gray-800 font-semibold shadow-md hover:bg-gray-100 transition-all"
+        className={`mt-4 flex items-center gap-2 px-6 py-3 rounded-full font-semibold shadow-md transition-all ${
+          isPlaying
+            ? "bg-red-500 text-white hover:bg-red-600"
+            : "bg-green-500 text-white hover:bg-green-600"
+        }`}
       >
         {isPlaying ? <VolumeX size={24} /> : <Volume2 size={24} />}{" "}
         {isPlaying ? "إيقاف" : "تشغيل"}
