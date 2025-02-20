@@ -54,6 +54,32 @@ export default function QuranRadioPlayer() {
     }
   };
 
+  useEffect(() => {
+    if ("mediaSession" in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: "إذاعة القرآن الكريم",
+        artist: "Quran Radio",
+        album: "Live Stream",
+        artwork: [{ src: "/refat.png", sizes: "512x512", type: "image/png" }],
+      });
+
+      navigator.mediaSession.setActionHandler("play", () => {
+        audioRef.current.play();
+        setIsPlaying(true);
+      });
+
+      navigator.mediaSession.setActionHandler("pause", () => {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      });
+
+      navigator.mediaSession.setActionHandler("stop", () => {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      });
+    }
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center p-6 bg-gradient-to-r from-green-300 to-blue-400 text-gray-900 rounded-xl shadow-xl max-w-md mx-auto transition-all duration-300 hover:shadow-2xl font-reem">
       <h2 className="text-2xl font-bold mb-4 text-center">
