@@ -55,6 +55,22 @@ export default function QuranRadioPlayer() {
   };
 
   useEffect(() => {
+    document.title = "إذاعة القرآن الكريم 📻";
+  }, []);
+
+  useEffect(() => {
+    const link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      const newLink = document.createElement("link");
+      newLink.rel = "icon";
+      newLink.href = "/QuranIcon.png"; // ضع المسار الجديد هنا
+      document.head.appendChild(newLink);
+    } else {
+      link.href = "/favicon.png";
+    }
+  }, []);
+
+  useEffect(() => {
     if ("mediaSession" in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({
         title: "إذاعة القرآن الكريم",
