@@ -101,7 +101,7 @@ export default function QuranRadioPlayer() {
       <h2 className="text-2xl font-bold mb-4 text-center">
         📻 إذاعة القرآن الكريم
       </h2>
-      <p className="text-lg font-semibold text-center text-gray-700 italic mb-4">
+      <p className="custom-arabic-text text-center text-gray-700 mb-4">
         استمع أو اجعلها صدقة لمن تحب سواء حيا أو ميتا
       </p>
       <audio ref={audioRef} src={shareUrl} autoPlay />
